@@ -1,15 +1,14 @@
 package com.ballistic.barco.domain;
 
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by Nabeel on 1/11/2018.
  */
 public interface IUser {
 
-    public UUID getUuid();
-    public void setUuid(UUID uuid);
+    public Long getId();
+    public void setId(Long id);
 
     public String getFirstname();
     public void setFirstname(String firstname);

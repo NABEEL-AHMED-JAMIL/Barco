@@ -1,12 +1,7 @@
 package com.ballistic.barco.domain;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 
 /**
  * Created by Nabeel on 1/11/2018.
@@ -15,16 +10,16 @@ import java.util.UUID;
 public class Authority implements IAuthority{
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Size(min = 0, max = 50)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Override
-    public UUID getUuid() { return uuid; }
+    public Long getId() { return id; }
     @Override
-    public void setUuid(UUID uuid) { this.uuid = uuid; }
+    public void setId(Long id) { this.id = id; }
 
     @Override
     public String getName() { return name; }

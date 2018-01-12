@@ -31,11 +31,14 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Transactional
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
+        log.info("login {}", login);
         String lowercaseLogin = login.toLowerCase();
         User userFromDatabase;
         if(lowercaseLogin.contains("@")) {
+            log.info("email--- {}", login);
             userFromDatabase = userRepository.findByEmail(lowercaseLogin);
         } else {
+            log.info("username--- {}", login);
             userFromDatabase = userRepository.findByUsernameCaseInsensitive(lowercaseLogin);
         }
 

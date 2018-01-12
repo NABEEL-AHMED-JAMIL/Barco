@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -26,6 +27,7 @@ import javax.sql.DataSource;
  */
 // token refresh need to acces
 @Configuration
+@PropertySource({ "classpath:application.properties" })
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
@@ -47,14 +49,21 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private String scopeWrite = "write";
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
+    @Value("${spring.datasource.driver-class-name}")
+    private String driverClassName;
+    @Value("${spring.datasource.url}")
+    private String url;
+    @Value("${spring.datasource.username}")
+    private String username;
+    @Value("${spring.datasource.password}")
+    private String password;
+
 
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private DataSource dataSource;
-
     @Bean
     public TokenStore tokenStore() { return new JdbcTokenStore(dataSource); }
 
@@ -76,7 +85,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource).withClient(clientId).
+        clients.inMemory().withClient(clientId).
                 scopes(scopeRead,scopeWrite).
                 authorities(Authorities.ROLE_ADMIN.name(), Authorities.ROLE_USER.name(),Authorities.ROLE_ANONYMOUS.name()).
                 authorizedGrantTypes(grantTypePassword, grantTypeClientCredentials, grantTypeRefreshToken).
@@ -90,4 +99,5 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             throws Exception {
         endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager);
     }
+
 }

@@ -1,10 +1,8 @@
 package com.ballistic.barco.domain;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 import java.util.Set;
 /**
  * Created by Nabeel on 1/11/2018.
@@ -13,20 +11,20 @@ import java.util.Set;
 public class User implements IUser {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Size(min = 0, max = 50)
     private String firstname;
     @Size(min = 0, max = 50)
     private String lastname;
     @Size(min = 0, max = 50)
+    @Column(unique = true, nullable = false)
     private String username;
     @Size(min = 0, max = 500)
+    @Column(unique = true, nullable = false)
     private String email;
     @Size(min = 0, max = 500)
     private String password;
-    @Size(min = 0, max = 100)
     @Column(name = "activated")
     private Boolean activated;
     @Size(min = 0, max = 100)
@@ -42,9 +40,9 @@ public class User implements IUser {
     private Set<Authority> authoritys;
 
     @Override
-    public UUID getUuid() { return uuid; }
+    public Long getId() { return id; }
     @Override
-    public void setUuid(UUID uuid) { this.uuid = uuid; }
+    public void setId(Long id) { this.id = id; }
 
     @Override
     public String getFirstname() {
