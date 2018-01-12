@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by Nabeel on 1/11/2018.
  */
 @Entity
-public class User implements IUser{
+public class User implements IUser {
 
     @Id
     @GeneratedValue(generator = "uuid")

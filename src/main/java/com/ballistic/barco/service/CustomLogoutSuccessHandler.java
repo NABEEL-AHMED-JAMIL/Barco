@@ -24,9 +24,12 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
 
     private static final String BEARER_AUTHENTICATION = "Bearer ";
     private static final String HEADER_AUTHORIZATION = "authorization";
+    private final TokenStore tokenStore;
 
     @Autowired
-    private TokenStore tokenStore;
+    public CustomLogoutSuccessHandler(TokenStore tokenStore) {
+        this.tokenStore = tokenStore;
+    }
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
