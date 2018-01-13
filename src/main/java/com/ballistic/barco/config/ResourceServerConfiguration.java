@@ -23,6 +23,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     private final Logger log = LoggerFactory.getLogger(ResourceServerConfiguration.class);
 
+    private static final String LOGOUT = "/aouth/logout";
+    private static final String AUTHORIZE = "/oauth/authorize";
+
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
     @Value("${security.security-realm}")
@@ -44,16 +47,15 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.httpBasic().realmName(securityRealm).and().
-                csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize")).disable().
+                csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher(AUTHORIZE)).disable().
                 exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).
                 and().
-                logout().logoutUrl("/oauth/logout").logoutSuccessHandler(customLogoutSuccessHandler).
+                logout().logoutUrl(LOGOUT).logoutSuccessHandler(customLogoutSuccessHandler).
                 and().
                 // access after the login user
                 authorizeRequests().antMatchers("/secure/**").authenticated().
                 and().
                 headers().frameOptions().disable();
     }
-
 
 }

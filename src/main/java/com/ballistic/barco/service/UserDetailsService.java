@@ -19,6 +19,7 @@ import java.util.Collection;
 /**
  * Created by Nabeel on 1/11/2018.
  */
+// No Issue work fine
 @Component
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 

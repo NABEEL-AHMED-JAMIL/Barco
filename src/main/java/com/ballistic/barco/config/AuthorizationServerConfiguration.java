@@ -48,6 +48,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
 
+    // data store
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
     @Value("${spring.datasource.url}")

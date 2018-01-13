@@ -17,13 +17,16 @@ import java.io.IOException;
 /**
  * Created by Nabeel on 1/11/2018.
  */
+// No Issue Work fine
 @Component
-public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlRequestHandler implements LogoutSuccessHandler {
+public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlRequestHandler
+        implements LogoutSuccessHandler {
 
     private final Logger log = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
 
     private static final String BEARER_AUTHENTICATION = "Bearer ";
-    private static final String HEADER_AUTHORIZATION = "authorization";
+    private static final String HEADER_AUTHORIZATION = "Authorization";
+
     private final TokenStore tokenStore;
 
     @Autowired
@@ -32,15 +35,21 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
     }
 
     @Override
-    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                Authentication authentication) throws IOException, ServletException {
+        // fetch token from the http-request
         String token = httpServletRequest.getHeader(HEADER_AUTHORIZATION);
+        // check if not null and start with 'Bearer'
         if(token != null && token.startsWith(BEARER_AUTHENTICATION)) {
+            // Condition true and spilt to access the token and remove from the token-store
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token.split(" ")[0]);
             log.info("User token..... {}", oAuth2AccessToken);
             if(oAuth2AccessToken != null) {
+                // remove process after getting the token
                 tokenStore.removeAccessToken(oAuth2AccessToken);
             }
         }
+        // return the 'Response with 'Ok response''
         httpServletResponse.setStatus(HttpServletResponse.SC_OK, "You are logout");
     }
 }

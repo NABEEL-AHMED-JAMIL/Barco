@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Nabeel on 1/12/2018.
  */
+// No Issue work fine
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 

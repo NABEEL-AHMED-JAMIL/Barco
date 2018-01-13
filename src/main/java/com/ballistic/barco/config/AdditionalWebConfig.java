@@ -10,6 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * Created by Nabeel Ahmed on 01/12/17.
  */
+// No issue work fine
 @Configuration
 public class AdditionalWebConfig {
     /**
