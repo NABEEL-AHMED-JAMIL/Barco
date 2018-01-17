@@ -13,23 +13,31 @@ public class User implements IUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Size(min = 0, max = 50)
     private String firstname;
+
     @Size(min = 0, max = 50)
     private String lastname;
+
     @Size(min = 0, max = 50)
     @Column(unique = true, nullable = false)
     private String username;
+
     @Size(min = 0, max = 500)
     @Column(unique = true, nullable = false)
     private String email;
+
     @Size(min = 0, max = 500)
     private String password;
+
     @Column(name = "activated")
     private Boolean activated;
+    // this help us to active and dis-active the account
     @Size(min = 0, max = 100)
     @Column(name = "activation_key")
     private String activationKey;
+    // help to reset password
     @Size(min = 0, max = 500)
     @Column(name = "rest_password_key")
     private String resetPasswordKey;

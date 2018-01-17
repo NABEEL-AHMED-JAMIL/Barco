@@ -22,7 +22,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     // play ground for jdbc.... hint password:123
     @Override
     public void run(String...args) throws Exception {
-        log.info("Store info in db");
+//        log.info("Store info in db");
 //        User user = new User();
 //        user.setFirstname("Nabeel");
 //        user.setLastname("Ahmed");

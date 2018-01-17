@@ -25,28 +25,26 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
     private final Logger log = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
 
     private static final String BEARER_AUTHENTICATION = "Bearer ";
-    private static final String HEADER_AUTHORIZATION = "Authorization";
-
-    private final TokenStore tokenStore;
+    private static final String HEADER_AUTHORIZATION = "authorization";
 
     @Autowired
-    public CustomLogoutSuccessHandler(TokenStore tokenStore) {
-        this.tokenStore = tokenStore;
-    }
+    private TokenStore tokenStore;
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                 Authentication authentication) throws IOException, ServletException {
         // fetch token from the http-request
         String token = httpServletRequest.getHeader(HEADER_AUTHORIZATION);
+        log.info("User token with barer..... {}", token);
         // check if not null and start with 'Bearer'
         if(token != null && token.startsWith(BEARER_AUTHENTICATION)) {
             // Condition true and spilt to access the token and remove from the token-store
-            OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token.split(" ")[0]);
-            log.info("User token..... {}", oAuth2AccessToken);
+            log.info("token" ,token.split(" ")[1]);
+            OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token.split(" ")[1]);
             if(oAuth2AccessToken != null) {
                 // remove process after getting the token
                 tokenStore.removeAccessToken(oAuth2AccessToken);
+//                tokenStore.removeRefreshToken();
             }
         }
         // return the 'Response with 'Ok response''
