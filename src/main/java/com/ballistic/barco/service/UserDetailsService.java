@@ -1,5 +1,6 @@
 package com.ballistic.barco.service;
 
+import com.ballistic.barco.captcha.service.ICaptchaService;
 import com.ballistic.barco.domain.User;
 import com.ballistic.barco.exception.UserNotActivatedException;
 import com.ballistic.barco.repository.UserRepository;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +29,10 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ICaptchaService iCaptchaService;
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     @Override
     @Transactional
@@ -42,6 +48,11 @@ public class UserDetailsService implements org.springframework.security.core.use
             log.info("username--- {}", login);
             userFromDatabase = userRepository.findByUsernameCaseInsensitive(lowercaseLogin);
         }
+
+        return authProcess(userFromDatabase, lowercaseLogin);
+    }
+
+    private UserDetails authProcess(User userFromDatabase, String lowercaseLogin) {
 
         if (userFromDatabase == null) {
             throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database");
@@ -59,6 +70,10 @@ public class UserDetailsService implements org.springframework.security.core.use
             return new org.springframework.security.core.userdetails.User(userFromDatabase.getUsername(),
                     userFromDatabase.getPassword(), grantedAuthoritys);
         }
+    }
+
+    private void httpServletResponse() {
+        // to be contine
     }
 }
 

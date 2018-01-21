@@ -14,7 +14,6 @@ import java.io.IOException;
  * Created by Nabeel on 1/11/2018.
  */
 // show 401 if not login
-// No Issue work fine
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

@@ -44,10 +44,9 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
             if(oAuth2AccessToken != null) {
                 // remove process after getting the token
                 tokenStore.removeAccessToken(oAuth2AccessToken);
-//                tokenStore.removeRefreshToken();
             }
         }
         // return the 'Response with 'Ok response''
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK, "You are logout");
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK, "{success:You are logout}");
     }
 }

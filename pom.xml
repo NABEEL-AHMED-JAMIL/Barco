@@ -63,18 +63,24 @@
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.0.7.RELEASE</version>
 		</dependency>
-		<!--starter-cache-->
+		<!--cache-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-		<!--google-zxing-->
+		<!--guava-lib-->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+		<!--zxing-->
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>3.2.0</version>
 		</dependency>
-		<!--starter-test-->
+		<!--test-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

@@ -41,10 +41,9 @@ public class User implements IUser {
     @Size(min = 0, max = 500)
     @Column(name = "rest_password_key")
     private String resetPasswordKey;
+
     @ManyToMany
-    @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "username"),
-            inverseJoinColumns = @JoinColumn(name = "authority"))
+    @JoinTable(name = "user_role",    joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "authority"))
     private Set<Authority> authoritys;
 
     @Override
