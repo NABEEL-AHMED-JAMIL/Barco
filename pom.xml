@@ -46,7 +46,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
-
 		<!--security-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,20 +57,24 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>2.0.3.RELEASE</version>
 		</dependency>
+		<!--security-jwt-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.0.7.RELEASE</version>
 		</dependency>
+		<!--starter-cache-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
+		<!--google-zxing-->
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+		<!--starter-test-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
