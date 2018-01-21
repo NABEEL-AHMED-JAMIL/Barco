@@ -1,6 +1,5 @@
 package com.ballistic.barco.config;
 
-import com.ballistic.barco.domain.Authority;
 import com.ballistic.barco.repository.AuthorityRepository;
 import com.ballistic.barco.service.Authorities;
 import org.slf4j.Logger;
@@ -24,7 +23,6 @@ import java.util.Arrays;
 /**
  * Created by Nabeel on 1/11/2018.
  */
-// token refresh need to acces
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -55,8 +53,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private DataSource dataSource;
     @Autowired
     private AuthorityRepository authorityRepository;
-    private String[] authoritys;
-
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
@@ -70,15 +66,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // @formatter:off
-//        inMemory()
         clients.jdbc(dataSource).
                 withClient(clientId).
                 resourceIds(resourceIds).
                 scopes(scopeRead,scopeWrite).
-                authorities(Authorities.ROLE_ADMIN.name(), Authorities.ROLE_USER.name(),
-                        Authorities.ROLE_ANONYMOUS.name()).
-                authorizedGrantTypes(grantTypePassword, grantTypeClientCredentials,
-                        grantTypeRefreshToken).
+                authorities(Authorities.ROLE_ADMIN.name(), Authorities.ROLE_USER.name(), Authorities.ROLE_ANONYMOUS.name()).
+                authorizedGrantTypes(grantTypePassword, grantTypeClientCredentials, grantTypeRefreshToken).
                 secret(clientSecret).
                 accessTokenValiditySeconds(180).
                 refreshTokenValiditySeconds(180*2);
@@ -86,23 +79,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-            throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // @formatter:off
         final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
         tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer()));
-        endpoints.tokenStore(tokenStore).tokenEnhancer(tokenEnhancerChain).
+        endpoints.tokenStore(tokenStore).
+                tokenEnhancer(tokenEnhancerChain).
                 authenticationManager(authenticationManager);
         // @formatter:on
-    }
-
-    private String[] getAuthoritys() {
-         Integer i = 0;
-        for (Authority authority: this.authorityRepository.findAll()) {
-            authoritys[i++] = authority.getName();
-        }
-
-        return authoritys;
     }
 
 }

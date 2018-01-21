@@ -35,10 +35,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Autowired
     private TokenStore tokenStore;
-
     @Autowired
     private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-
     @Autowired
     private CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
@@ -53,12 +51,25 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.httpBasic().realmName(securityRealm).and().exceptionHandling().
-                authenticationEntryPoint(customAuthenticationEntryPoint).and().logout().logoutUrl(LOGOUT).
+        http.sessionManagement().
+                sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.httpBasic().
+                realmName(securityRealm).
+                and().
+                exceptionHandling().
+                authenticationEntryPoint(customAuthenticationEntryPoint).
+                and().
+                logout().
+                logoutUrl(LOGOUT).
                 logoutSuccessHandler(customLogoutSuccessHandler);
-        http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher(AUTHORIZE)).
-                disable().headers().frameOptions().disable().and().authorizeRequests().
+        http.csrf().
+                requireCsrfProtectionMatcher(new AntPathRequestMatcher(AUTHORIZE)).
+                disable().
+                headers().
+                frameOptions().
+                disable().
+                and().
+                authorizeRequests().
                 antMatchers("/api"+AUTH+REGISTER, "/api"+AUTH+ACTIVATED, "/api"+AUTH+RESETPASSWORD,"/api"+AUTH+LOSTPASSWORD).
                 permitAll().
                 antMatchers(QR_SECURE).authenticated();

@@ -43,6 +43,11 @@ public class UserDetailsService implements org.springframework.security.core.use
             userFromDatabase = userRepository.findByUsernameCaseInsensitive(lowercaseLogin);
         }
 
+        return authProcess(userFromDatabase, lowercaseLogin);
+    }
+
+    private UserDetails authProcess(User userFromDatabase, String lowercaseLogin) {
+
         if (userFromDatabase == null) {
             throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database");
         } else if (userFromDatabase.getAuthoritys() == null || userFromDatabase.getAuthoritys().isEmpty()) {

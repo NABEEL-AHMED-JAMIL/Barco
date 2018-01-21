@@ -11,20 +11,16 @@ public class ContentPathUtill {
     public static final String ACTIVATED = "/activated";
     public static final String RESETPASSWORD = "/reset/password";
     public static final String LOSTPASSWORD = "/lost/password";
-
     // QR CONTROLLER
     public static final String QR_CODE = "/qr-code";
     public static final String GENERATE_QR = "/generate-qr";
     public static final String DECODE_QR = "/decode-qr";
-
     // IMAGE-SPRITE CONTROLLER
     public static final String SPRITE = "/sprite";
-
     // HTTP-SECURITY......
     public static final String API_DOCS = "/api-docs/**";
     public static final String ACTUATOR = "/actuator/**";
     public static final String QR_SECURE = "/qr-code/**";
-
     // LOGOUT
     public static final String LOGOUT = "/oauth/logout";
     public static final String AUTHORIZE = "/oauth/authorize";
@@ -70,6 +66,5 @@ public class ContentPathUtill {
     public static String getAUTHORIZE() {
         return AUTHORIZE;
     }
-
 
 }

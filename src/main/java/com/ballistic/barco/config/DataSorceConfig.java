@@ -51,4 +51,5 @@ public class DataSorceConfig {
     public TokenStore tokenStore() {
         return new JdbcTokenStore(dataSource());
     }
+
 }
