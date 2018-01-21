@@ -31,24 +31,12 @@ public class ContentPathUtill {
 
 
     public static String getAUTH() { return AUTH; }
-    public static String getREGISTER() {
-        return REGISTER;
-    }
-    public static String getACTIVATED() {
-        return ACTIVATED;
-    }
-    public static String getRESETPASSWORD() {
-        return RESETPASSWORD;
-    }
-    public static String getLOSTPASSWORD() {
-        return LOSTPASSWORD;
-    }
-    public static String getQrCode() {
-        return QR_CODE;
-    }
-    public static String getGenerateQr() {
-        return GENERATE_QR;
-    }
+    public static String getREGISTER() { return REGISTER; }
+    public static String getACTIVATED() { return ACTIVATED; }
+    public static String getRESETPASSWORD() { return RESETPASSWORD; }
+    public static String getLOSTPASSWORD() { return LOSTPASSWORD; }
+    public static String getQrCode() { return QR_CODE; }
+    public static String getGenerateQr() { return GENERATE_QR; }
     public static String getDecodeQr() {
         return DECODE_QR;
     }
