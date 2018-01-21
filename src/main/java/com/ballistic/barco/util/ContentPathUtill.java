@@ -17,6 +17,8 @@ public class ContentPathUtill {
     public static final String DECODE_QR = "/decode-qr";
     // IMAGE-SPRITE CONTROLLER
     public static final String SPRITE = "/sprite";
+    public static final String IMAGE_SPRITE = "/image/sprite";
+    public static final String IMAGE_JOIN = "/image/join";
     // HTTP-SECURITY......
     public static final String API_DOCS = "/api-docs/**";
     public static final String ACTUATOR = "/actuator/**";
@@ -39,6 +41,7 @@ public class ContentPathUtill {
     public static String getLOSTPASSWORD() {
         return LOSTPASSWORD;
     }
+
     public static String getQrCode() {
         return QR_CODE;
     }
@@ -48,9 +51,11 @@ public class ContentPathUtill {
     public static String getDecodeQr() {
         return DECODE_QR;
     }
-    public static String getSPRITE() {
-        return SPRITE;
-    }
+
+    public static String getSPRITE() { return SPRITE; }
+    public static String getImageSprite() { return IMAGE_SPRITE; }
+    public static String getImageJoin() { return IMAGE_JOIN; }
+
     public static String getApiDocs() {
         return API_DOCS;
     }
@@ -60,6 +65,7 @@ public class ContentPathUtill {
     public static String getQrSecure() {
         return QR_SECURE;
     }
+
     public static String getLOGOUT() {
         return LOGOUT;
     }

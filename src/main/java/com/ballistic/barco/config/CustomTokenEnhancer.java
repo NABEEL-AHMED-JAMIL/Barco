@@ -13,6 +13,7 @@ import java.util.Map;
  * Created by Nabeel on 1/17/2018.
  */
 public class CustomTokenEnhancer implements TokenEnhancer {
+
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken oAuth2AccessToken, OAuth2Authentication oAuth2Authentication) {
 
@@ -30,6 +31,5 @@ public class CustomTokenEnhancer implements TokenEnhancer {
             return null;
         }
     }
-
 }
 

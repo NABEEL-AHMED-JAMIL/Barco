@@ -22,4 +22,21 @@ curl -i -X GET http://rest-api.io/items/5069b47aa892630aae059584
 curl -i -X DELETE http://rest-api.io/items/5069b47aa892630aae059584
 curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "New item", "year": "2009"}' http://rest-api.io/items
 curl -i -X PUT -H 'Content-Type: application/json' -d '{"name": "Updated item", "year": "2010"}' http://rest-api.io/items/5069b47aa892630aae059584
+# Re-Captcha Key/Value paire
+label: spring-ionic, Domains: localhost, Owners: nabee.amd93@gmail.com
+Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc,
+Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+Client Side Integration
+   1) Paste this snippet before the closing </head> tag on your HTML template:
+       <script src='https://www.google.com/recaptcha/api.js'></script>
+   2) Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear:
+       <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
+Server side Integration
+When your users submit the form where you integrated reCAPTCHA,
+you'll get as part of the payload a string with the name "g-recaptcha-response".
+In order to check whether Google has verified that user, send a POST request with these parameters:
+   1) URL: https://www.google.com/recaptcha/api/siteverify
+   2) secret (required)	6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+   3) response (required)	The value of 'g-recaptcha-response'.
+   4) remoteip	The end user's ip address.
 ```
