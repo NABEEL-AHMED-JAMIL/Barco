@@ -25,7 +25,7 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
     private final Logger log = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
 
     private static final String BEARER_AUTHENTICATION = "Bearer ";
-    private static final String REFRESH_TOKEN = "refreshToken";
+    private static final String REFRESH_TOKEN = "refresh_token";
     private static final String HEADER_AUTHORIZATION = "authorization";
 
     @Autowired
@@ -40,13 +40,13 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
         log.info("User token with barer..... {}", token);
         log.info("User refresh token..... {}", refreshToken);
         // check if not null and start with 'Bearer' and not null refreshToken
-        if((token != null && token.startsWith(BEARER_AUTHENTICATION)) && refreshToken != null) {
+        if((token != null && token.startsWith(BEARER_AUTHENTICATION)) && (refreshToken != null)) {
 
             // Condition true and spilt to access the token and remove from the token-store
             log.info("token" ,token.split(" ")[1]);
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token.split(" ")[1]);
             OAuth2RefreshToken oAuth2RefreshToken = tokenStore.readRefreshToken(refreshToken);
-            if(oAuth2AccessToken != null && oAuth2RefreshToken != null) {
+            if((oAuth2AccessToken != null) && (oAuth2RefreshToken != null)) {
                 // remove process after getting the token
                 tokenStore.removeAccessToken(oAuth2AccessToken);
                 tokenStore.removeRefreshToken(oAuth2RefreshToken);

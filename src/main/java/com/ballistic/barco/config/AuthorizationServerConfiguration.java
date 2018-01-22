@@ -72,8 +72,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 authorities(Authorities.ROLE_ADMIN.name(), Authorities.ROLE_USER.name(), Authorities.ROLE_ANONYMOUS.name()).
                 authorizedGrantTypes(grantTypePassword, grantTypeClientCredentials, grantTypeRefreshToken).
                 secret(clientSecret).
-                accessTokenValiditySeconds(180).
-                refreshTokenValiditySeconds(180*2);
+                accessTokenValiditySeconds(180*2).
+                refreshTokenValiditySeconds(1800*2);
         // @formatter:on
     }
 

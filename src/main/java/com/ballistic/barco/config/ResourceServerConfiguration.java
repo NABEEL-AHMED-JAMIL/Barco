@@ -72,7 +72,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 authorizeRequests().
                 antMatchers("/api"+AUTH+REGISTER, "/api"+AUTH+ACTIVATED, "/api"+AUTH+RESETPASSWORD,"/api"+AUTH+LOSTPASSWORD).
                 permitAll().
-                antMatchers(QR_SECURE).authenticated();
+                antMatchers(QR_SECURE, SPRITE).authenticated();
         // @formatter:on
     }
 

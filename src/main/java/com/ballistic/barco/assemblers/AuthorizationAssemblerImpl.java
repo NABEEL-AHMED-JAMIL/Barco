@@ -36,5 +36,4 @@ public class AuthorizationAssemblerImpl implements IAuthorizationAssembler {
 
         return user;
     }
-
 }

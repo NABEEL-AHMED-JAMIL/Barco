@@ -78,7 +78,6 @@ public class CaptchaService implements ICaptchaService {
     @Override
     public String getReCaptchaUrl() { return captchaSettings.getUrl(); }
 
-
     private String getClientIP() {
         final String xfHeader = request.getHeader("X-Forwarded-For");
         if (xfHeader == null) { return request.getRemoteAddr(); }
