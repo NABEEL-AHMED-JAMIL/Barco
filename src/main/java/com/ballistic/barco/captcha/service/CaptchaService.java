@@ -7,8 +7,6 @@ import com.ballistic.barco.captcha.exception.ReCaptchaUnavailableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
@@ -32,10 +30,6 @@ public class CaptchaService implements ICaptchaService {
     private CaptchaSettings captchaSettings;
     @Autowired
     private ReCaptchaAttemptService reCaptchaAttemptService;
-
-    @Bean
-    @Scope("prototype")
-    public GoogleResponse googleResponse() { return new GoogleResponse(); }
 
     private RestOperations restTemplate;
     private static final Pattern RESPONSE_PATTERN = Pattern.compile("[A-Za-z0-9_-]+");
