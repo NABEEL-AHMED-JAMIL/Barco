@@ -1,6 +1,5 @@
 package com.ballistic.barco.service;
 
-import com.ballistic.barco.captcha.service.ICaptchaService;
 import com.ballistic.barco.domain.User;
 import com.ballistic.barco.exception.UserNotActivatedException;
 import com.ballistic.barco.repository.UserRepository;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,10 +27,6 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private ICaptchaService iCaptchaService;
-    @Autowired
-    private HttpServletRequest httpServletRequest;
 
     @Override
     @Transactional
@@ -72,8 +66,5 @@ public class UserDetailsService implements org.springframework.security.core.use
         }
     }
 
-    private void httpServletResponse() {
-        // to be contine
-    }
 }
 
