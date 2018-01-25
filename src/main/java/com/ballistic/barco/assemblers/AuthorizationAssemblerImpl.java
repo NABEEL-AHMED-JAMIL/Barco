@@ -2,6 +2,7 @@ package com.ballistic.barco.assemblers;
 
 import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.service.Encryption;
+import com.ballistic.barco.vo.ResetPasswordVo;
 import com.ballistic.barco.vo.UserRegistrationVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,12 @@ public class AuthorizationAssemblerImpl implements IAuthorizationAssembler {
 
         return user;
 
+    }
+
+    @Override
+    public User toUser(ResetPasswordVo resetPasswordVo) {
+
+        return null;
     }
 
 

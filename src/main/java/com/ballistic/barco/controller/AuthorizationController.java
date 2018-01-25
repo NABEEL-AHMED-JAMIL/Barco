@@ -2,6 +2,7 @@ package com.ballistic.barco.controller;
 
 import com.ballistic.barco.assemblers.IAuthorizationAssembler;
 import com.ballistic.barco.captcha.service.ICaptchaService;
+import com.ballistic.barco.service.Encryption;
 import com.ballistic.barco.service.authorization.IAuthorizationService;
 import com.ballistic.barco.vo.ResetPasswordVo;
 import com.ballistic.barco.vo.UserRegistrationVo;
@@ -12,11 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import static com.ballistic.barco.util.ContentPathUtill.*;
 
@@ -38,15 +42,17 @@ public class AuthorizationController {
     private IAuthorizationService iAuthorizationService;
     @Autowired
     private ICaptchaService iCaptchaService;
+    @Autowired
+    private HttpServletRequest request;
+
     private static final String RECEPTCHA_RESPONSE = "g-recaptcha-response";
 
 
     @RequestMapping(value =  REGISTER , method = RequestMethod.POST)
-    public ResponseEntity<String> register(@Valid @RequestBody UserRegistrationVo userRegistrationVo,
-                                           HttpServletRequest request) throws UnsupportedEncodingException, URISyntaxException {
+    public ResponseEntity<String> register(@Valid @RequestBody UserRegistrationVo userRegistrationVo) {
         // used the recaptcha process
         log.info("start....register....process....rest..api");
-        this.iCaptchaService.processResponse(getRecaptchaResponse(request), getIp(request));
+        this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
         // process for register ...
         log.info("captcha....success....do...next.....save..process");
         return new ResponseEntity<String>(
@@ -55,30 +61,44 @@ public class AuthorizationController {
     }
 
     @RequestMapping(value= LOSTPASSWORD, method=RequestMethod.POST)
-    public ResponseEntity<String> forgotPassword(@RequestBody String email, HttpServletRequest request) throws UnsupportedEncodingException, URISyntaxException {
+    public ResponseEntity<String> forgotPassword(@RequestBody String email) {
         // used the recaptcha process
-        this.iCaptchaService.processResponse(getRecaptchaResponse(request), getIp(request));
+        this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
         // this send the email to user for reset the password
         // try to send the template...
         return new ResponseEntity<String>(String.format(returnString, "Forgot-password"), HttpStatus.OK);
     }
 
     @RequestMapping(value = ACTIVATED , method = RequestMethod.POST)
-    public ResponseEntity<String> activated(@PathVariable("activationKey") String activationKey,
-                                            @RequestBody String email) {
+    public ResponseEntity<String> activated(@PathVariable("activationKey") String activationKey, @RequestBody String email) {
+        if(verifyKey(activationKey, email)) {
+            // do futher process
+        }
         return new ResponseEntity<String>(String.format(returnString, "Activated"), HttpStatus.OK);
     }
 
     @RequestMapping(value = RESETPASSWORD , method = RequestMethod.POST)
-    public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordVo resetPasswordVo,
-                                                HttpServletRequest request) throws UnsupportedEncodingException, URISyntaxException {
+    public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordVo resetPasswordVo) {
         // used the recaptcha process
-        this.iCaptchaService.processResponse(getRecaptchaResponse(request), getIp(request));
+        this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
+
         return new ResponseEntity<String>(String.format(returnString, "Reset-Password"), HttpStatus.OK);
     }
 
-    private String getRecaptchaResponse(HttpServletRequest request) { return request.getHeader(RECEPTCHA_RESPONSE); }
-    private String getIp(HttpServletRequest request) { return request.getRemoteAddr(); }
+
+    private String getRecaptchaResponse() { return request.getHeader(RECEPTCHA_RESPONSE); }
+    private String getIp() { return request.getRemoteAddr(); }
+    private Boolean verifyKey(final String key, final String email) {
+        Boolean result = false;
+        try {
+            result = Encryption.decryPtion(key).equals(email);
+        } catch (IllegalBlockSizeException | InvalidKeyException | NoSuchAlgorithmException
+                | BadPaddingException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 }
 

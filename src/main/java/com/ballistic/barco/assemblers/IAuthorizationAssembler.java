@@ -1,6 +1,7 @@
 package com.ballistic.barco.assemblers;
 
 import com.ballistic.barco.domain.auth.User;
+import com.ballistic.barco.vo.ResetPasswordVo;
 import com.ballistic.barco.vo.UserRegistrationVo;
 
 /**
@@ -9,4 +10,5 @@ import com.ballistic.barco.vo.UserRegistrationVo;
 public interface IAuthorizationAssembler {
 
     User toUser(UserRegistrationVo registrationVo);
+    User toUser(ResetPasswordVo resetPasswordVo);
 }

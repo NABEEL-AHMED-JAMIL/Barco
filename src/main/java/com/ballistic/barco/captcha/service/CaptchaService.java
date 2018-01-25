@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 
 /**
@@ -34,7 +33,7 @@ public class CaptchaService implements ICaptchaService {
 
 
     @Override
-    public void processResponse(String response, String ip) throws URISyntaxException {
+    public void processResponse(String response, String ip)  {
 
         log.info("process....Re-Captcha....Check.....");
         try {
