@@ -1,6 +1,6 @@
 package com.ballistic.barco.util;
 
-import com.ballistic.barco.domain.Authority;
+import com.ballistic.barco.domain.auth.Authority;
 import com.ballistic.barco.repository.AuthorityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

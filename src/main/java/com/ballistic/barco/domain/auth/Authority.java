@@ -1,4 +1,4 @@
-package com.ballistic.barco.domain;
+package com.ballistic.barco.domain.auth;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

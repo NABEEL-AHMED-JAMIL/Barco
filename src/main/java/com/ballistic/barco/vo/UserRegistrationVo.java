@@ -1,6 +1,6 @@
 package com.ballistic.barco.vo;
 
-import com.ballistic.barco.domain.Authority;
+import com.ballistic.barco.domain.auth.Authority;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -32,7 +32,6 @@ public class UserRegistrationVo {
     @NotNull(message = "authoritys can not be null.")
     @NotEmpty(message = "authoritys not be empty")
     private Set<Authority> authoritys;
-
 
     public String getFirstname() { return firstname; }
     public void setFirstname(String firstname) { this.firstname = firstname; }

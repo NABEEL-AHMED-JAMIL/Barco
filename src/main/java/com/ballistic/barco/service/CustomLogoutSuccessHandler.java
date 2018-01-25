@@ -43,13 +43,15 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
         if((token != null && token.startsWith(BEARER_AUTHENTICATION)) && (refreshToken != null)) {
 
             // Condition true and spilt to access the token and remove from the token-store
-            log.info("token" ,token.split(" ")[1]);
+            log.info("token....{}" ,token.split(" ")[1]);
             OAuth2AccessToken oAuth2AccessToken = tokenStore.readAccessToken(token.split(" ")[1]);
             OAuth2RefreshToken oAuth2RefreshToken = tokenStore.readRefreshToken(refreshToken);
             if((oAuth2AccessToken != null) && (oAuth2RefreshToken != null)) {
                 // remove process after getting the token
+                log.info("token....remove.....process");
                 tokenStore.removeAccessToken(oAuth2AccessToken);
                 tokenStore.removeRefreshToken(oAuth2RefreshToken);
+                log.info(".......You are Logout.........");
             }
         }
         // return the 'Response with 'Ok response''

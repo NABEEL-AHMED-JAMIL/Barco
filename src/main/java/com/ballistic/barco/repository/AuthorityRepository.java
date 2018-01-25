@@ -1,6 +1,7 @@
 package com.ballistic.barco.repository;
 
-import com.ballistic.barco.domain.Authority;
+
+import com.ballistic.barco.domain.auth.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

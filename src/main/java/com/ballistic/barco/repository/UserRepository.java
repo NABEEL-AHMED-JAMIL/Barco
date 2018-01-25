@@ -1,6 +1,6 @@
 package com.ballistic.barco.repository;
 
-import com.ballistic.barco.domain.User;
+import com.ballistic.barco.domain.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

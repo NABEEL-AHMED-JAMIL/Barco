@@ -1,4 +1,4 @@
-package com.ballistic.barco.domain;
+package com.ballistic.barco.domain.auth;
 
 /**
  * Created by Nabeel on 1/11/2018.

@@ -34,9 +34,11 @@ public class AccountAuthenticatoinProvider extends AbstractUserDetailsAuthentica
         log.info("> Additional Authentication Checks");
 
         if(usernamePasswordAuthenticationToken.getCredentials() == null || userDetails.getPassword() == null) {
+            log.error("> Exception ....... {}", BadCredentialsException.class);
             throw new BadCredentialsException("Credentials mya not be null.");
         }
         if(!passwordEncoder.matches((String) usernamePasswordAuthenticationToken.getCredentials(), userDetails.getPassword())) {
+            log.error("> Exception ....... {}", BadCredentialsException.class);
             throw new BadCredentialsException("Invalid Credentials");
         }
         log.info("< Additional Authentication Checks");

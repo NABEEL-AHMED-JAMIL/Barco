@@ -8,16 +8,15 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Nabeel on 1/12/2018.
  */
-// No Issue work fine
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
 
-//    @Autowired
-//    private UserRepository userRepository;
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    // @Autowired
+    // private UserRepository userRepository;
+    // @Autowired
+    // private PasswordEncoder passwordEncoder;
 
     // play ground for jdbc.... hint password:123
     @Override

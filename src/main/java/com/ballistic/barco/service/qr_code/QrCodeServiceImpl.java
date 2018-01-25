@@ -16,7 +16,7 @@ import java.io.IOException;
 @Cacheable(cacheNames = "qr-code-cache", sync = true)
 public class QrCodeServiceImpl implements IQrCodeService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QrCodeServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(QrCodeServiceImpl.class);
 
     @Override
     public byte[] generateQRCode(String text, int width, int height) throws WriterException, IOException {
@@ -32,6 +32,6 @@ public class QrCodeServiceImpl implements IQrCodeService {
     @Override
     @CacheEvict(cacheNames = "qr-code-cache", allEntries = true)
     public void purgeCache() {
-        LOGGER.info("Purging cache");
+        log.info("Purging cache");
     }
 }

@@ -1,6 +1,6 @@
 package com.ballistic.barco.assemblers;
 
-import com.ballistic.barco.domain.User;
+import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.vo.UserRegistrationVo;
 
 /**
@@ -8,5 +8,5 @@ import com.ballistic.barco.vo.UserRegistrationVo;
  */
 public interface IAuthorizationAssembler {
 
-    public User toComment(UserRegistrationVo registrationVo) throws Exception ;
+    User toUser(UserRegistrationVo registrationVo);
 }

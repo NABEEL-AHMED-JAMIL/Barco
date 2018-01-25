@@ -1,6 +1,6 @@
 package com.ballistic.barco.service;
 
-import com.ballistic.barco.domain.User;
+import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.exception.UserNotActivatedException;
 import com.ballistic.barco.repository.UserRepository;
 import org.slf4j.Logger;
@@ -19,7 +19,6 @@ import java.util.Collection;
 /**
  * Created by Nabeel on 1/11/2018.
  */
-// No Issue work fine
 @Component
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
@@ -49,15 +48,19 @@ public class UserDetailsService implements org.springframework.security.core.use
     private UserDetails authProcess(User userFromDatabase, String lowercaseLogin) {
 
         if (userFromDatabase == null) {
+            log.error("Exception--- {}", "User name Not found");
             throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database");
         } else if (userFromDatabase.getAuthoritys() == null || userFromDatabase.getAuthoritys().isEmpty()) {
+            log.error("Exception--- {}", "User name Not found");
             throw new UsernameNotFoundException("User " + lowercaseLogin + " is not possible due to the authority null");
         } else if (!userFromDatabase.isActivated()) {
+            log.error("Exception--- {}", "User Not Activate Account found");
             throw new UserNotActivatedException("User " + lowercaseLogin + " is not activated yet");
         }else {
             log.info("getting role--- {}", userFromDatabase.getAuthoritys().toString());
             Collection<GrantedAuthority> grantedAuthoritys = new ArrayList<>();
             userFromDatabase.getAuthoritys().forEach(authority -> {
+                log.info("Authority--- {}", authority);
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
                 grantedAuthoritys.add(grantedAuthority);
             });
