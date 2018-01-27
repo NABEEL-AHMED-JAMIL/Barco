@@ -28,4 +28,5 @@ public class ExceptionResponse {
     public void setErrors(List<String> errors) {
         this.errors = errors;
     }
+
 }

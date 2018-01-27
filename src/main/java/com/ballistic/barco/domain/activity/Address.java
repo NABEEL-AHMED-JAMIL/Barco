@@ -1,11 +1,19 @@
 package com.ballistic.barco.domain.activity;
 
-// final class
-public class Address{
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-   private String street;     
-   private String city;     
-   private String state;    
+// final class
+@Embeddable
+public final class Address{
+
+   @Column( name = "street")
+   private String street;
+   @Column( name = "city")
+   private String city;
+   @Column( name = "state")
+   private String state;
+   @Column( name = "zipcode")
    private String zipcode;
 
    public Address() {}

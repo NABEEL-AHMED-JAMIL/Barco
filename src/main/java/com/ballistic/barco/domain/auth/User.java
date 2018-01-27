@@ -1,22 +1,24 @@
 package com.ballistic.barco.domain.auth;
 
 
+import com.ballistic.barco.domain.DeletableModel;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Set;
 /**
  * Created by Nabeel on 1/11/2018.
  */
 @Entity
-public class User implements IUser {
+@Table(name = "user")
+@Inheritance( strategy = InheritanceType.JOINED )
+@DiscriminatorColumn( name="type" )
+public class User extends DeletableModel implements IUser, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
-    @Size(min = 0, max = 50)
-    private String firstname;
-    @Size(min = 0, max = 50)
-    private String lastname;
     @Size(min = 0, max = 50)
     @Column(unique = true, nullable = false)
     private String username;
@@ -43,20 +45,6 @@ public class User implements IUser {
     public Long getId() { return id; }
     @Override
     public void setId(Long id) { this.id = id; }
-
-    @Override
-    public String getFirstname() {
-        return firstname;
-    }
-    @Override
-    public void setFirstname(String firstname) { this.firstname = firstname; }
-
-    @Override
-    public String getLastname() {
-        return lastname;
-    }
-    @Override
-    public void setLastname(String lastname) { this.lastname = lastname; }
 
     @Override
     public String getUsername() {
@@ -108,4 +96,12 @@ public class User implements IUser {
     public Set<Authority> getAuthoritys() { return authoritys; }
     @Override
     public void setAuthoritys(Set<Authority> authoritys) { this.authoritys = authoritys; }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", email='" + email +
+                '\'' + ", password='" + password + '\'' + ", activated=" + activated +
+                ", activationKey='" + activationKey + '\'' + ", resetPasswordKey='" +
+                resetPasswordKey + '\'' + ", authoritys=" + authoritys + '}';
+    }
 }

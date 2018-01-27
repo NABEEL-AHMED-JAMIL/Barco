@@ -7,6 +7,7 @@ import com.ballistic.barco.vo.UserRegistrationVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  * Created by Nabeel on 1/22/2018.
  */
 @Component("authorizationAssemblerImpl")
+@Scope("prototype")
 public class AuthorizationAssemblerImpl implements IAuthorizationAssembler {
 
     private static final Logger log = LoggerFactory.getLogger(AuthorizationAssemblerImpl.class);
@@ -27,8 +29,6 @@ public class AuthorizationAssemblerImpl implements IAuthorizationAssembler {
 
         log.info("Start convert from Vo to User");
         User user = new User();
-        user.setFirstname(registrationVo.getFirstname());
-        user.setLastname(registrationVo.getLastname());
         user.setUsername(registrationVo.getUsername());
         user.setEmail(registrationVo.getEmail());
         user.setPassword(passwordEncoder().encode(registrationVo.getPassword()));

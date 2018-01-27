@@ -41,13 +41,9 @@ public class CaptchaService implements ICaptchaService {
             isBlockedIo(ip);
             // check the token.... valid character or not
             checkValidCharacter(response);
-
-            MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
-            form.add("secret", getReCaptchaSecret());
-            form.add("response", response);
-            form.add("remoteip", ip);
-
-            GoogleResponse googleResponse = getRestTemplate().postForObject(getReCaptchaUrl(), form ,GoogleResponse.class);
+            // getting google response
+            GoogleResponse googleResponse = getRestTemplate().
+                    postForObject(getReCaptchaUrl(), getSourceForm(response, ip) ,GoogleResponse.class);
             log.info("Google's response: {} ", googleResponse.toString());
 
             if (!googleResponse.isSuccess()) {
@@ -63,25 +59,6 @@ public class CaptchaService implements ICaptchaService {
         reCaptchaAttemptService.reCaptchaSucceeded(ip);
     }
 
-    private boolean responseSanityCheck(final String response) {
-        return StringUtils.hasLength(response) && RESPONSE_PATTERN.matcher(response).matches();
-    }
-
-    private void isBlockedIo(String ip) {
-
-        if(reCaptchaAttemptService.isBlocked(ip)) {
-            throw new ReCaptchaInvalidException("Client exceeded maximum number of failed attempts");
-        }
-    }
-
-    private void checkValidCharacter(String response) {
-
-        if (!responseSanityCheck(response)) {
-            throw new ReCaptchaInvalidException("Response contains invalid characters");
-        }
-    }
-
-
     @Override
     public String getReCaptchaSite() { return captchaSettings.getSite(); }
     @Override
@@ -89,6 +66,27 @@ public class CaptchaService implements ICaptchaService {
     @Override
     public String getReCaptchaUrl() { return captchaSettings.getUrl(); }
 
+    private boolean responseSanityCheck(final String response) {
+        return StringUtils.hasLength(response) && RESPONSE_PATTERN.matcher(response).matches();
+    }
+    private void isBlockedIo(String ip) {
+        if(reCaptchaAttemptService.isBlocked(ip)) {
+            throw new ReCaptchaInvalidException("Client exceeded maximum number of failed attempts");
+        }
+    }
+    private void checkValidCharacter(String response) {
+        if (!responseSanityCheck(response)) {
+            throw new ReCaptchaInvalidException("Response contains invalid characters");
+        }
+    }
+    private MultiValueMap getSourceForm(final String response, final String ip){
+
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("secret", getReCaptchaSecret());
+        form.add("response", response);
+        form.add("remoteip", ip);
+        return form;
+    }
     private RestTemplate getRestTemplate(){ return  new RestTemplate(); }
 
 }
