@@ -22,7 +22,6 @@ public class DatedModel implements Serializable{
     @Column( name = "updated_at" )
     private Timestamp updatedAt;
 
-
     public DatedModel() {super();}
     public DatedModel(Timestamp createdAt, Timestamp updatedAt) {
         this.createdAt = createdAt;

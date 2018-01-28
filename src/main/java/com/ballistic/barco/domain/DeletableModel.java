@@ -20,4 +20,5 @@ public abstract class DeletableModel extends DatedModel implements Serializable 
     public Timestamp getDeletedAt() { return deletedAt; }
     public void setDeletedAt( Timestamp deletedAt ) { this.deletedAt = deletedAt; }
     public boolean isDeleted() { return getDeletedAt() != null; }
+
 }

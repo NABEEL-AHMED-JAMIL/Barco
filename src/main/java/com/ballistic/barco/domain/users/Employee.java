@@ -4,6 +4,7 @@ import com.ballistic.barco.domain.activity.Attendance;
 import com.ballistic.barco.domain.activity.Salary;
 import com.ballistic.barco.domain.activity.UserInfo;
 import com.ballistic.barco.domain.auth.User;
+import com.ballistic.barco.domain.model.CustomerOrder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,18 +17,27 @@ import java.util.List;
 @DiscriminatorValue( value = "EMPLOYEE" )
 public class Employee extends User {
 
+    // Photo
     @Embedded
     private UserInfo userInfo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
     private List<Salary> salary;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
     private List<Attendance> attendance;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<CustomerOrder> customerOrders;
+    @Column(name = "note")
+    private String note;
 
     public Employee() {}
-    public Employee(UserInfo userInfo, List<Salary> salary, List<Attendance> attendance) {
+
+    public Employee(UserInfo userInfo, List<Salary> salary, List<Attendance> attendance,
+                    List<CustomerOrder> customerOrders, String note) {
         this.userInfo = userInfo;
         this.salary = salary;
         this.attendance = attendance;
+        this.customerOrders = customerOrders;
+        this.note = note;
     }
 
     public UserInfo getUserInfo() { return userInfo; }
@@ -38,6 +48,12 @@ public class Employee extends User {
 
     public List<Attendance> getAttendance() { return attendance; }
     public void setAttendance(List<Attendance> attendance) { this.attendance = attendance; }
+
+    public List<CustomerOrder> getCustomerOrders() { return customerOrders; }
+    public void setCustomerOrders(List<CustomerOrder> customerOrders) { this.customerOrders = customerOrders; }
+
+    public String getNote() { return note; }
+    public void setNote(String note) { this.note = note; }
 
     @Override
     public String toString() {

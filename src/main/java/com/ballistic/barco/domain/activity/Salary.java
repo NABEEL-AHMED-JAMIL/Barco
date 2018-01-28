@@ -29,16 +29,23 @@ public class Salary {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+    @Column(name = "sender_bank_code")
+    private String senderBankCode;
+    @Column(name = "receiver_bank_code")
+    private String receiverBankCode;
 
 
     public Salary() {}
     public Salary(Timestamp saleDate, Double salAmount, Boolean status,
-                  String comment, Employee employee) {
+                  String comment, Employee employee, String senderBankCode,
+                  String receiverBankCode) {
         this.saleDate = saleDate;
         this.salAmount = salAmount;
         this.status = status;
         this.comment = comment;
         this.employee = employee;
+        this.senderBankCode = senderBankCode;
+        this.receiverBankCode = receiverBankCode;
     }
 
     public Long getId() { return id; }
@@ -59,10 +66,16 @@ public class Salary {
     public Employee getEmployee() { return employee; }
     public void setEmployee(Employee employee) { this.employee = employee; }
 
+    public String getSenderBankCode() { return senderBankCode; }
+    public void setSenderBankCode(String senderBankCode) { this.senderBankCode = senderBankCode; }
+
+    public String getReceiverBankCode() { return receiverBankCode; }
+    public void setReceiverBankCode(String receiverBankCode) { this.receiverBankCode = receiverBankCode; }
+
     @Override
     public String toString() {
-        return "Salary{" + "id=" + id + ", saleDate=" + saleDate +
-                ", salAmount=" + salAmount + ", status=" + status +
-                ", comment='" + comment + '\'' + ", employee=" + employee + '}';
+        return "Salary{" + "id=" + id + ", saleDate=" + saleDate + ", salAmount=" + salAmount +
+                ", status=" + status + ", comment='" + comment + '\'' + ", employee=" + employee +
+                ", senderBankCode='" + senderBankCode + '\'' + ", receiverBankCode='" + receiverBankCode + '\'' + '}';
     }
 }

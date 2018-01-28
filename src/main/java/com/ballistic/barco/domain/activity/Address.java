@@ -15,6 +15,8 @@ public final class Address{
    private String state;
    @Column( name = "zipcode")
    private String zipcode;
+   @Column(name = "country")
+   private String country;
 
    public Address() {}
    public Address(String street, String city, String state, String zipcode) {
@@ -50,9 +52,13 @@ public final class Address{
       this.zipcode = zipcode;
    }
 
+   public String getCountry() { return country; }
+   public void setCountry(String country) { this.country = country; }
+
    @Override
    public String toString() {
-      return "Address{" + "street='" + street + '\'' + ", city='" + city + '\'' +
-              ", state='" + state + '\'' + ", zipcode='" + zipcode + '\'' + '}';
+      return "Address {" + "street='" + street + '\'' + ", city='" + city + '\'' +
+              ", state='" + state + '\'' + ", zipcode='" + zipcode + '\'' +
+              ", country='" + country + '\'' + '}';
    }
 }
