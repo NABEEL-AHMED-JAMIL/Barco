@@ -2,6 +2,7 @@ package com.ballistic.barco.controller;
 
 import com.ballistic.barco.assemblers.IAuthorizationAssembler;
 import com.ballistic.barco.captcha.service.ICaptchaService;
+import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.service.Encryption;
 import com.ballistic.barco.service.authorization.IAuthorizationService;
 import com.ballistic.barco.vo.ResetPasswordVo;
@@ -47,10 +48,29 @@ public class AuthorizationController {
 
     private static final String RECEPTCHA_RESPONSE = "g-recaptcha-response";
 
-
+    
+    // USE object and further convert to the => vo then do process
     @RequestMapping(value =  REGISTER , method = RequestMethod.POST)
     public ResponseEntity<String> register(@Valid @RequestBody UserRegistrationVo userRegistrationVo) {
-        // used the recaptcha process
+        
+    	
+    	if(UserType.EMPLOYEE != null) {
+    		// for employee
+    		
+    	} else if (UserType.CUSTOMER != null) {
+    		// for customer
+    		
+    	} else if (UserType.SHIPPER != null) {
+    		// for shipper
+    
+    	} else if(UserType.SUPPLIER != null) {
+    		// for supplier	
+    		
+    	} else {
+    		// no process work 
+    	}
+    	
+    	// used the recaptcha process
         log.info("start....register....process....rest..api");
         this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
         // process for register ...
@@ -97,6 +117,11 @@ public class AuthorizationController {
             e.printStackTrace();
         }
         return result;
+    }
+    
+    
+    private enum UserType {
+    	CUSTOMER, EMPLOYEE, SHIPPER, SUPPLIER
     }
 
 
