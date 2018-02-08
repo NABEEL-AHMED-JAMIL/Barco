@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 @Inheritance( strategy = InheritanceType.JOINED )
-@DiscriminatorColumn( name="type" )
+@DiscriminatorColumn( name="type", discriminatorType = DiscriminatorType.STRING, length = 255)
 public class User extends DeletableModel implements IUser, Serializable {
 
     @Id
@@ -40,7 +40,10 @@ public class User extends DeletableModel implements IUser, Serializable {
     @ManyToMany
     @JoinTable(name = "user_role",    joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "authority"))
     private Set<Authority> authoritys;
-
+    @Column(name = "type", insertable = false, updatable = false)
+    private String type;
+    
+    
     @Override
     public Long getId() { return id; }
     @Override
@@ -96,8 +99,13 @@ public class User extends DeletableModel implements IUser, Serializable {
     public Set<Authority> getAuthoritys() { return authoritys; }
     @Override
     public void setAuthoritys(Set<Authority> authoritys) { this.authoritys = authoritys; }
-
-    @Override
+    
+    
+    public String getType() { return type; }
+	public void setType(String type) { this.type = type; }
+	
+	
+	@Override
     public String toString() {
         return "User{" + "id=" + id + ", username='" + username + '\'' + ", email='" + email +
                 '\'' + ", password='" + password + '\'' + ", activated=" + activated +
