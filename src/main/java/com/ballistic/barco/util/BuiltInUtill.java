@@ -24,4 +24,9 @@ public class BuiltInUtill {
         }
         return authoritys;
     }
+
+
+    public static Long getProcessTime() {
+        return System.currentTimeMillis();
+    }
 }
