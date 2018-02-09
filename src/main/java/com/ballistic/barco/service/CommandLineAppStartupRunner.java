@@ -37,38 +37,38 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     // play ground for jdbc.... hint password:123
     @Override
     public void run(String...args) throws Exception {
-       // doProcess();
+        doProcess();
     }
 
     private void createCustomer() {
         Customer customer = new Customer();
-        customer.setUsername("nabeel.amd93");
-        customer.setEmail("nabeel.amd93@gmail.com");
-        customer.setPassword(passwordEncoder.encode("nabeel.amd93"));
+        customer.setUsername("nabeel.amd931");
+        customer.setEmail("nabeel.amd931@gmail.com");
+        customer.setPassword(passwordEncoder.encode("nabeel.amd931"));
         customerRepository.save(customer);
     }
 
     private void createEmployee() {
         Employee employee = new Employee();
-        employee.setEmail("abubaker93@gmail.com");
-        employee.setUsername("abubaker93");
-        employee.setPassword(passwordEncoder.encode("abubaker93"));
+        employee.setEmail("abubaker931@gmail.com");
+        employee.setUsername("abubaker931");
+        employee.setPassword(passwordEncoder.encode("abubaker931"));
         employeeRepository.save(employee);
     }
 
     private void createShipper() {
         Shipper shipper = new Shipper();
-        shipper.setEmail("shipper93@gmail.com");
-        shipper.setUsername("shipper93");
-        shipper.setPassword(passwordEncoder.encode("shipper93"));
+        shipper.setEmail("shipper931@gmail.com");
+        shipper.setUsername("shipper931");
+        shipper.setPassword(passwordEncoder.encode("shipper931"));
         shipperRepository.save(shipper);
     }
 
     private void createSupplier() {
         Supplier supplier = new Supplier();
-        supplier.setEmail("supplier93@gmail.com");
-        supplier.setUsername("supplier93");
-        supplier.setPassword(passwordEncoder.encode("supplier93"));
+        supplier.setEmail("supplier931@gmail.com");
+        supplier.setUsername("supplier931");
+        supplier.setPassword(passwordEncoder.encode("supplier931"));
         supplierRepository.save(supplier);
     }
 

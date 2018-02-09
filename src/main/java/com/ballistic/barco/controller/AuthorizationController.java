@@ -80,14 +80,6 @@ public class AuthorizationController {
                         iAuthorizationAssembler.toUser(userRegistrationVo)), HttpStatus.OK);
     }
 
-    @RequestMapping(value= LOSTPASSWORD, method=RequestMethod.POST)
-    public ResponseEntity<String> forgotPassword(@RequestBody String email) {
-        // used the recaptcha process
-        this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
-        // this send the email to user for reset the password
-        // try to send the template...
-        return new ResponseEntity<String>(String.format(returnString, "Forgot-password"), HttpStatus.OK);
-    }
 
     @RequestMapping(value = ACTIVATED , method = RequestMethod.POST)
     public ResponseEntity<String> activated(@PathVariable("activationKey") String activationKey, @RequestBody String email) {
@@ -95,6 +87,15 @@ public class AuthorizationController {
             // do futher process
         }
         return new ResponseEntity<String>(String.format(returnString, "Activated"), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value= LOSTPASSWORD, method=RequestMethod.POST)
+    public ResponseEntity<String> forgotPassword(@RequestBody String email) {
+        // used the recaptcha process
+        this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());
+        // this send the email to user for reset the password
+        // try to send the template...
+        return new ResponseEntity<String>(String.format(returnString, "Forgot-password"), HttpStatus.OK);
     }
 
     @RequestMapping(value = RESETPASSWORD , method = RequestMethod.POST)
