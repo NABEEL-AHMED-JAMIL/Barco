@@ -25,16 +25,16 @@
 # 2 Google Re-Captcha Setting
 #### 1) Key/Value paire
 ```
-  * Label: spring-ionic
-  * Domains: localhost
-  * Owners: nabee.amd93@gmail.com
-  * Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc
-  * Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+* Label: spring-ionic
+* Domains: localhost
+* Owners: nabee.amd93@gmail.com
+* Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc
+* Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
 ```
 #### 2) Client Side Integration
 ```
-   1) Paste this snippet before the closing </head> tag on your HTML template: <script src='https://www.google.com/recaptcha/api.js'></script>
-   2) Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear: <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
+* Paste this snippet before the closing </head> tag on your HTML template: <script src='https://www.google.com/recaptcha/api.js'></script>
+* Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear: <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
 ```
 #### 3) Server side Integration
 ```
@@ -46,9 +46,9 @@ In order to check whether Google has verified that user, send a POST request wit
   4) remoteip  The end user's ip address.
 ```
 # 3 Image For Post-Man Request
-    1)  ![alt text](barco/postman/access_data.png)
-    2)  ![alt text](barco/postman/barco.png)
-    3)  ![alt text](barco/postman/login.png)
-    4)  ![alt text](barco/postman/refresh_token.png)
-    5)  ![alt text](barco/postman/token_image.png)
-    6)  ![alt text](barco/postman/unauthorized.png)
+![alt text](postman/access_data.png)
+![alt text](postman/barco.png)
+![alt text](postman/login.png)
+![alt text](postman/refresh_token.png)
+![alt text](postman/token_image.png)
+![alt text](postman/unauthorized.png)
