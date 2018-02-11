@@ -21,6 +21,9 @@
 	* curl -i -X DELETE http://rest-api.io/items/5069b47aa892630aae059584
 	* curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "New item", "year": "2009"}' http://rest-api.io/items
 	* curl -i -X PUT -H 'Content-Type: application/json' -d '{"name": "Updated item", "year": "2010"}' http://rest-api.io/items/5069b47aa892630aae059584
+#### 7. Upload file Request Curl-Cmd
+	* curl -F 'img_avatar=@/home/petehouston/hello.txt' http://localhost/upload
+	* curl -F ‘data=@path/to/local/file’ UPLOAD_ADDRESS
 
 # 2 Google Re-Captcha Setting
 #### 1) Key/Value paire
@@ -47,13 +50,14 @@ In order to check whether Google has verified that user, send a POST request wit
 ```
 # 3 Image For Post-Man Request
 ![alt text](postman/access_data.png)
-![alt text](postman/barco.png)
 ![alt text](postman/login.png)
 ![alt text](postman/refresh_token.png)
 ![alt text](postman/token_image.png)
 ![alt text](postman/unauthorized.png)
+![alt text](postman/FileUpload_Postman.png)
+![alt text](postman/barco.png)
+
 # AWS (Amazon Web Services)
-<h4>Used the AWs these Component in the Project</h4>
 ##### 1) S3 => used for Store File
 ##### 2) RDS => For Store "App info" DATA-Base => (MY-SQL)
 ##### 3) EC2 => Computer for Run the App
