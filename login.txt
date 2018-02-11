@@ -1,5 +1,7 @@
 ------------------(USER)-----------------------------
 1) Customer + 2) Employee + 3) Shipper + 4) Supplier
+-----------------------------------------------------
+Add the Function for "Device Base" Token Generate for User
 -----------------(LOGIN)-----------------------------
 1) User have only 3 attempt for logIn
 2) If he/she Successful then ok

@@ -2,7 +2,6 @@ package com.ballistic.barco.controller;
 
 import com.ballistic.barco.assemblers.IAuthorizationAssembler;
 import com.ballistic.barco.captcha.service.ICaptchaService;
-import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.service.Encryption;
 import com.ballistic.barco.service.authorization.IAuthorizationService;
 import com.ballistic.barco.vo.ResetPasswordVo;
@@ -19,7 +18,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -52,24 +50,18 @@ public class AuthorizationController {
     // USE object and further convert to the => vo then do process
     @RequestMapping(value =  REGISTER , method = RequestMethod.POST)
     public ResponseEntity<String> register(@Valid @RequestBody UserRegistrationVo userRegistrationVo) {
-        
-    	
+        // HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse
     	if(UserType.EMPLOYEE != null) {
     		// for employee
-    		
     	} else if (UserType.CUSTOMER != null) {
     		// for customer
-    		
     	} else if (UserType.SHIPPER != null) {
     		// for shipper
-    
     	} else if(UserType.SUPPLIER != null) {
-    		// for supplier	
-    		
+    		// for supplier
     	} else {
     		// no process work 
     	}
-    	
     	// used the recaptcha process
         log.info("start....register....process....rest..api");
         this.iCaptchaService.processResponse(getRecaptchaResponse(), getIp());

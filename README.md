@@ -52,3 +52,52 @@ In order to check whether Google has verified that user, send a POST request wit
 ![alt text](postman/refresh_token.png)
 ![alt text](postman/token_image.png)
 ![alt text](postman/unauthorized.png)
+# AWS (Amazon Web Services)
+<h4>Used the AWs these Component in the Project</h4>
+##### 1) S3 => used for Store File
+##### 2) RDS => For Store "App info" DATA-Base => (MY-SQL)
+##### 3) EC2 => Computer for Run the App
+##### 4) I'am Rule for All these
+##### 5) SNS => Simple Notification Service
+##### 6) SQS => Simple Queue Service
+##### 7) SES => Simple Email Service
+##### 8) AGW => Api-GetWay
+##### 9) Lamda => Used
+##### 10) Elastic Cache
+
+
+Setp: 1
+First add the Group Name so My Group Name:- ballistic
+Second Attach Policy:- 
+			arn:aws:iam::aws:policy/AdministratorAccess ====> AdministratorAccess
+			arn:aws:iam::aws:policy/AmazonS3FullAccess  ====> AmazonS3FullAccess
+			arn:aws:iam::aws:policy/AmazonRDSFullAccess ====> AmazonRDSFullAccess
+Third Press the Create Group: ===> Button
+Setp: 2
+First Set user Details
+	User name : ===> usballistic
+	you can add more than one user
+Second Select AWS access Type
+	Access type: Programmatic access, AWS Management Console access ====> both check
+	Console password: Custom password ===> select and put your password i used same as user name ===> (usballistic) password
+	Require password reset: Check true
+Third Press the Permisson ===> Button
+Fourth After press this button this will asked you 3 option (Add user to group, Copy permissions from existing user, Attach existing policies directly)
+So we Select (Add user to group) and press the check of group (ballistic) my group
+Fifth Press the Review ====> Button
+Sixth Press the Create User ====> Button
+Setp 3:
+	Copy the link :- Users with AWS Management Console access can sign-in at: https://316048168081.signin.aws.amazon.com/console
+	by use of this you can add new (user, group)
+	User ===> usballistic, Access key ID  ===> AKIAIK3WCVSMLXN6LJVQ,   Secret access key  ===> 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
+-------------------------------------------------------------Search for(S3)--------------------------------------------------------------------------
+Now We are move to create the S3 for Store I Create the Bucket with the Name (s3ballistic) and my server in Mumbai server which is near by my country
+Set permissions(check all the box's)
+-------------------------------------------------------------Search for(RDS)--------------------------------------------------------------------------
+Go to Instance and select MYSQL and Select the (DEV/TEST MYSQL)
+DB-Instance, Master username, password ==> (dbballistic)
+create new security group (segballistic) and add mysql/auror
+Database name are same as (dbproductlist)
+Endpoint (dbballistic.cvrn4opans6v.ap-south-1.rds.amazonaws.com)
+tag(name/spring-boot-list-aws)
+security group(spring-boot-list-aws-sgroup)
