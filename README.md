@@ -24,14 +24,18 @@
 
 # 2 Google Re-Captcha Setting
 #### 1) Key/Value paire
+```
   * Label: spring-ionic
   * Domains: localhost
   * Owners: nabee.amd93@gmail.com
   * Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc
   * Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+```
 #### 2) Client Side Integration
+```
    1) Paste this snippet before the closing </head> tag on your HTML template: <script src='https://www.google.com/recaptcha/api.js'></script>
    2) Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear: <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
+```
 #### 3) Server side Integration
 ```
 When your users submit the form where you integrated reCAPTCHA, you'll get as part of the payload a string with the name "g-recaptcha-response".
