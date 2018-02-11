@@ -23,24 +23,24 @@
 	* curl -i -X PUT -H 'Content-Type: application/json' -d '{"name": "Updated item", "year": "2010"}' http://rest-api.io/items/5069b47aa892630aae059584
 
 # 2 Google Re-Captcha Setting
-   #### 1) Key/Value paire
-	* Label: spring-ionic
-	* Domains: localhost
-	* Owners: nabee.amd93@gmail.com
-	* Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc
-	* Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
-   #### 2) Client Side Integration
-      1) Paste this snippet before the closing </head> tag on your HTML template: <script src='https://www.google.com/recaptcha/api.js'></script>
-	  2) Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear: <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
-   #### 3) Server side Integration
-   ```
-   When your users submit the form where you integrated reCAPTCHA, you'll get as part of the payload a string with the name "g-recaptcha-response".
-   In order to check whether Google has verified that user, send a POST request with these parameters:
-		 1) URL: https://www.google.com/recaptcha/api/siteverify
-		 2) secret (required) 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
-		 3) response (required)   The value of 'g-recaptcha-response'.
-		 4) remoteip  The end user's ip address.
-   ```
+#### 1) Key/Value paire
+  * Label: spring-ionic
+  * Domains: localhost
+  * Owners: nabee.amd93@gmail.com
+  * Site key: 6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc
+  * Secret key: 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+#### 2) Client Side Integration
+   1) Paste this snippet before the closing </head> tag on your HTML template: <script src='https://www.google.com/recaptcha/api.js'></script>
+   2) Paste this snippet at the end of the <form> where you want the reCAPTCHA widget to appear: <div class="g-recaptcha" data-sitekey="6Le3zkEUAAAAAHWmmdTdoUiE11izsUH4iTqjJVSc"></div>
+#### 3) Server side Integration
+```
+When your users submit the form where you integrated reCAPTCHA, you'll get as part of the payload a string with the name "g-recaptcha-response".
+In order to check whether Google has verified that user, send a POST request with these parameters:
+  1) URL: https://www.google.com/recaptcha/api/siteverify
+  2) secret (required) 6Le3zkEUAAAAACYZS7ue0in1RM-UAGjwutkA0Qz4
+  3) response (required)   The value of 'g-recaptcha-response'.
+  4) remoteip  The end user's ip address.
+```
 # 3 Image For Post-Man Request
     1)  ![alt text](barco/postman/access_data.png)
     2)  ![alt text](barco/postman/barco.png)
