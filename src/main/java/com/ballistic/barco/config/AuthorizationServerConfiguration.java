@@ -44,6 +44,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private String scopeWrite = "write";
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
+    @Value("${access.token.validity.seconds.web}")
+    private Integer token_web;
+    @Value("${access.token.validity.seconds.other}")
+    private Integer token_other_div;
+    @Value("${refresh.token.validity.seconds.web}")
+    private Integer refresh_token_web;
+    @Value("${refresh.token.validity.seconds.other}")
+    private Integer regresh_token_other_div;
 
 
     @Autowired
@@ -76,6 +84,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 refreshTokenValiditySeconds(1800*2);
         // @formatter:on
     }
+
+
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
