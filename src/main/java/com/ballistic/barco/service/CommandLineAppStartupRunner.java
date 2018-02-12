@@ -37,7 +37,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     // play ground for jdbc.... hint password:123
     @Override
     public void run(String...args) throws Exception {
-        doProcess();
+        //doProcess();
     }
 
     private void createCustomer() {
