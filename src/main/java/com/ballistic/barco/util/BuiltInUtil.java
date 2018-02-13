@@ -10,13 +10,13 @@ import org.springframework.mobile.device.Device;
  * Created by Nabeel on 1/17/2018.
  */
 @Component
-public class BuiltInUtill {
+public class BuiltInUtil {
 
     @Autowired
     private AuthorityRepository authorityRepository;
     private String[] authoritys;
 
-    public BuiltInUtill() {}
+    public BuiltInUtil() {}
 
     public String[] getAuthoritys() {
         Integer i = 0;
@@ -32,22 +32,6 @@ public class BuiltInUtill {
     }
 
 
-    static final String AUDIENCE_UNKNOWN = "unknown";
-    static final String AUDIENCE_WEB = "web";
-    static final String AUDIENCE_MOBILE = "mobile";
-    static final String AUDIENCE_TABLET = "tablet";
 
-
-    private static String generateAudience(Device device) {
-        String audience = AUDIENCE_UNKNOWN;
-        if (device.isNormal()) {
-            audience = AUDIENCE_WEB;
-        } else if (device.isTablet()) {
-            audience = AUDIENCE_TABLET;
-        } else if (device.isMobile()) {
-            audience = AUDIENCE_MOBILE;
-        }
-        return audience;
-    }
 
 }

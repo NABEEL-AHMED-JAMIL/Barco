@@ -1,5 +1,7 @@
 package com.ballistic.barco.captcha.exception;
 
+
+
 /**
  * Created by Nabeel on 1/21/2018.
  */

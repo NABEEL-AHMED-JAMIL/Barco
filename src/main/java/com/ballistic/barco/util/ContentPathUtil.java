@@ -3,7 +3,7 @@ package com.ballistic.barco.util;
 /**
  * Created by Nabeel on 1/13/2018.
  */
-public class ContentPathUtill {
+public class ContentPathUtil {
 
     // AUTHORIZATION CONTROLLER
     public static final String AUTH = "/oauth";

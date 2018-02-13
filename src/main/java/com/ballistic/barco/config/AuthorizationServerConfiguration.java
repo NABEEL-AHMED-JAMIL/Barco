@@ -2,6 +2,7 @@ package com.ballistic.barco.config;
 
 import com.ballistic.barco.repository.AuthorityRepository;
 import com.ballistic.barco.service.Authorities;
+import com.ballistic.barco.component.DeviceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,14 +45,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private String scopeWrite = "write";
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
-    @Value("${access.token.validity.seconds.web}")
-    private Integer token_web;
-    @Value("${access.token.validity.seconds.other}")
-    private Integer token_other_div;
-    @Value("${refresh.token.validity.seconds.web}")
-    private Integer refresh_token_web;
-    @Value("${refresh.token.validity.seconds.other}")
-    private Integer regresh_token_other_div;
 
 
     @Autowired
@@ -63,6 +56,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private DeviceUtil deviceUtil;
 
 
     @Override
@@ -77,12 +72,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 withClient(clientId).
                 resourceIds(resourceIds).
                 scopes(scopeRead,scopeWrite).
-                authorities(Authorities.ROLE_ADMIN.name(), Authorities.ROLE_USER.name(), Authorities.ROLE_ANONYMOUS.name()).
+                authorities(
+                        Authorities.ROLE_ADMIN.name(),
+                        Authorities.ROLE_USER.name(),
+                        Authorities.ROLE_ANONYMOUS.name()).
                 authorizedGrantTypes(grantTypePassword, grantTypeClientCredentials, grantTypeRefreshToken).
                 secret(clientSecret).
-                accessTokenValiditySeconds(180*2).
-                refreshTokenValiditySeconds(1800*2);
+                accessTokenValiditySeconds(300).
+                refreshTokenValiditySeconds(300);
         // @formatter:on
+//        deviceUtil.getToken(),deviceUtil.getRefreshToken()
     }
 
 

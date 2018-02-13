@@ -3,6 +3,7 @@ package com.ballistic.barco.service;
 import com.ballistic.barco.domain.auth.User;
 import com.ballistic.barco.exception.UserNotActivatedException;
 import com.ballistic.barco.repository.UserRepository;
+import com.ballistic.barco.component.UserDetailsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Autowired
     private UserRepository userRepository;
+//    @Autowired
+//    private UserDetailsUtil userDetailsUtil;
+
 
     @Override
     @Transactional
@@ -45,7 +49,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         return authProcess(userFromDatabase, lowercaseLogin);
     }
 
-    private UserDetails authProcess(User userFromDatabase, String lowercaseLogin) {
+    private UserDetailsUtil authProcess(User userFromDatabase, String lowercaseLogin) {
 
         if (userFromDatabase == null) {
             log.error("Exception--- {}", "User name Not found");
@@ -64,10 +68,10 @@ public class UserDetailsService implements org.springframework.security.core.use
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
                 grantedAuthoritys.add(grantedAuthority);
             });
-            return new org.springframework.security.core.userdetails.User(userFromDatabase.getUsername(),
-                    userFromDatabase.getPassword(), grantedAuthoritys);
+            return new UserDetailsUtil(userFromDatabase);
         }
     }
+
 
 }
 

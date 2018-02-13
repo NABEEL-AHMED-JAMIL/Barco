@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.ballistic.barco.util.ContentPathUtill.*;
+import static com.ballistic.barco.util.ContentPathUtil.*;
 
 /**
  * Created by Nabeel on 1/16/2018.
