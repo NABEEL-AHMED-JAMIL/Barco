@@ -1,5 +1,6 @@
 package com.ballistic.barco.captcha.exception;
 
+
 /**
  * Created by Nabeel on 1/21/2018.
  */
@@ -18,4 +19,5 @@ public final class ReCaptchaUnavailableException extends RuntimeException {
     public ReCaptchaUnavailableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
+
 }

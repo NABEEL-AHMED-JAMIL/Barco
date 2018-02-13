@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import static com.ballistic.barco.util.ContentPathUtill.*;
+import static com.ballistic.barco.util.ContentPathUtil.*;
 
 /**
  * Created by Nabeel on 1/16/2018.

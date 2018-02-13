@@ -2,7 +2,7 @@ package com.ballistic.barco.config;
 
 import com.ballistic.barco.service.CustomAuthenticationEntryPoint;
 import com.ballistic.barco.service.CustomLogoutSuccessHandler;
-import com.ballistic.barco.util.BuiltInUtill;
+import com.ballistic.barco.util.BuiltInUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static com.ballistic.barco.util.ContentPathUtill.*;
+import static com.ballistic.barco.util.ContentPathUtil.*;
 
 /**
  * Created by Nabeel on 1/11/2018.
@@ -32,6 +32,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private String resourceIds;
     @Value("${security.security-realm}")
     private String securityRealm;
+    @Value("${server.contextPath}")
+    private String api;
 
     @Autowired
     private TokenStore tokenStore;
@@ -70,12 +72,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 disable().
                 and().
                 authorizeRequests().
-                antMatchers("/api"+AUTH+REGISTER, "/api"+AUTH+ACTIVATED, "/api"+AUTH+RESETPASSWORD,"/api"+AUTH+LOSTPASSWORD).
+                antMatchers(api+AUTH+REGISTER, api+AUTH+ACTIVATED, api+AUTH+RESETPASSWORD,api+AUTH+LOSTPASSWORD).
                 permitAll().
                 antMatchers(QR_SECURE, SPRITE).authenticated();
         // @formatter:on
     }
 
     @Bean
-    public BuiltInUtill builtInUtill() { return new BuiltInUtill(); }
+    public BuiltInUtil builtInUtill() { return new BuiltInUtil(); }
+
 }

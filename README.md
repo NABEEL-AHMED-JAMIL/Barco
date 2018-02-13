@@ -21,6 +21,12 @@
 	* curl -i -X DELETE http://rest-api.io/items/5069b47aa892630aae059584
 	* curl -i -X POST -H 'Content-Type: application/json' -d '{"name": "New item", "year": "2009"}' http://rest-api.io/items
 	* curl -i -X PUT -H 'Content-Type: application/json' -d '{"name": "Updated item", "year": "2010"}' http://rest-api.io/items/5069b47aa892630aae059584
+	* curl -i -X DELETE localhost:8080/rest/customers/2
+	* curl -i -H "Content-Type: application/json" -X PUT -d '{"id":3,"firstName":"Joe","lastName":"Smith333333","dateOfBirth":379468800000,"address":{"id":3,"street":"High Street","town":"Belfast","county":"Down","postcode":"BT893PY"}}' localhost:8080/rest/customers/3
+	* curl -i -H "Content-Type: application/json" -X POST -d '{"firstName":"JoeXXXXXXXXXXXXXXX","lastName":"SmithXXXXXXXXXXXXX","dateOfBirth":379468800000,"address":{"street":"High Street","town":"Belfast","county":"Down","postcode":"BT893PY"}}' localhost:8080/rest/customers
+	* curl -i localhost:8080/rest/customers
+	* curl -i localhost:8080/rest/customers/1
+
 #### 7. Upload file Request Curl-Cmd
 	* curl -F 'img_avatar=@/home/petehouston/hello.txt' http://localhost/upload
 	* curl -F ‘data=@path/to/local/file’ UPLOAD_ADDRESS
@@ -58,18 +64,53 @@ In order to check whether Google has verified that user, send a POST request wit
 ![alt text](postman/barco.png)
 
 # AWS (Amazon Web Services)
-##### 1) S3 => used for Store File
-##### 2) RDS => For Store "App info" DATA-Base => (MY-SQL)
-##### 3) EC2 => Computer for Run the App
+Before creating a database instance on RDS we need to create a security group that will make the database accessible from the internet.<br>
+<b>Note: in a production environment your database would never be publicly accessible and would only be accessible from EC2 instances within your Virtual Private Cloud. </b>
+##### 1) EC2 Computer for Run the App
+   
+   * Create Security Groups
+      - Security group name
+         - barco-rds-sec-group
+      - Security group name
+         - security group defines access rules to RDS
+      - Security group name
+         - vpc-69203900 (default)
+   * Security Groups Rule
+      - Type
+         - MYSQL/Aurora
+      - Protocol
+         - TCP
+      - Port Range
+         - 3306
+      - Source
+        - Anywhere 0.0.0.0/0, ::/0
+      - Description
+        - SSH for barco-rds-sec-group
+##### 2) RDS For Store "App info" DATA-Base => (MY-SQL)
+From the main AWS dashboard click RDS. On the main RDS dashboard click Launch a DB Instance.
+   * Select Mysql then press next button
+   * Select Dev/Test - Mysql
+   * Db Instance Class => db.t2 micro --- 1 vCPU, 1 GiB RAM
+   * Db Instance Identifier => barco-rds-db
+   * Master Username => barco
+   * Master Password => ball.....
+   * VPC security groups => barco-rds-sec-group
+   * database name => barco_rds
+   * Iam Db authentication => Enable Iam Db authentication
+   * Monitoring => Enable enhanced monitoring
+   * Log export => Check all
+##### 1) S3 For Store File
+   * Bucket Name => barco-file-bucket
+##### 3) EC2 Computer for Run the App
 ##### 4) I'am Rule for All these
-##### 5) SNS => Simple Notification Service
-##### 6) SQS => Simple Queue Service
-##### 7) SES => Simple Email Service
-##### 8) AGW => Api-GetWay
-##### 9) Lamda => Used
+##### 5) SNS (Simple Notification Service)
+##### 6) SQS (Simple Queue Service)
+##### 7) SES (Simple Email Service)
+##### 8) AGW (Api-GetWay)
+##### 9) Lamda Used
 ##### 10) Elastic Cache
 
-
+```
 Setp: 1
 First add the Group Name so My Group Name:- ballistic
 Second Attach Policy:- 
@@ -94,14 +135,6 @@ Setp 3:
 	Copy the link :- Users with AWS Management Console access can sign-in at: https://316048168081.signin.aws.amazon.com/console
 	by use of this you can add new (user, group)
 	User ===> usballistic, Access key ID  ===> AKIAIK3WCVSMLXN6LJVQ,   Secret access key  ===> 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
--------------------------------------------------------------Search for(S3)--------------------------------------------------------------------------
-Now We are move to create the S3 for Store I Create the Bucket with the Name (s3ballistic) and my server in Mumbai server which is near by my country
-Set permissions(check all the box's)
--------------------------------------------------------------Search for(RDS)--------------------------------------------------------------------------
-Go to Instance and select MYSQL and Select the (DEV/TEST MYSQL)
-DB-Instance, Master username, password ==> (dbballistic)
-create new security group (segballistic) and add mysql/auror
-Database name are same as (dbproductlist)
-Endpoint (dbballistic.cvrn4opans6v.ap-south-1.rds.amazonaws.com)
-tag(name/spring-boot-list-aws)
-security group(spring-boot-list-aws-sgroup)
+
+
+```

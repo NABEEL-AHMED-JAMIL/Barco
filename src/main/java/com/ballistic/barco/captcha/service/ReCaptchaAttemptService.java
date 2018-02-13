@@ -32,10 +32,7 @@ public class ReCaptchaAttemptService {
     }
 
     public void reCaptchaSucceeded(final String key) { attemptsCache.invalidate(key); }
-    public void reCaptchaFailed(final String key) {
-        int attempts = attemptsCache.getUnchecked(key);
-        attempts++;
-        attemptsCache.put(key, attempts);
-    }
+    public void reCaptchaFailed(final String key) { attemptsCache.put(key, attemptsCache.getUnchecked(key) + 1); }
     public boolean isBlocked(final String key) { return attemptsCache.getUnchecked(key) >= MAX_ATTEMPT; }
+
 }
