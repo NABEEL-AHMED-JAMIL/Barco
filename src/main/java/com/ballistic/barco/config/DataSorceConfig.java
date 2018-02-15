@@ -1,5 +1,8 @@
 package com.ballistic.barco.config;
 
+import com.ballistic.barco.service.AccountAuthenticatoinProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +20,8 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSorceConfig {
 
+    private final Logger log = LoggerFactory.getLogger(DataSorceConfig.class);
+
     @Value("${spring.datasource.driver-class-name}")
     private String driverClass;
     @Value("${spring.datasource.username}")
@@ -30,6 +35,8 @@ public class DataSorceConfig {
     @Primary
     //Making this primary to avoid any accidental duplication with another token service instance of the same name
     public DefaultTokenServices tokenServices() {
+
+        log.info("Token.....Service..........");
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);
@@ -39,6 +46,7 @@ public class DataSorceConfig {
     // JDBC token store configuration
     @Bean
     public DataSource dataSource() {
+        log.info("dataSource for token....");
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(dbUrl);
