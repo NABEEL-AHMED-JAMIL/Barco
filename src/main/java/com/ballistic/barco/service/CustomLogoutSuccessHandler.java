@@ -34,7 +34,7 @@ public class CustomLogoutSuccessHandler extends AbstractAuthenticationTargetUrlR
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                 Authentication authentication) throws IOException, ServletException {
-        // fetch token's from the http-request
+        // fetch token's from the http-rtbrequest
         String token = httpServletRequest.getHeader(HEADER_AUTHORIZATION);
         String refreshToken = httpServletRequest.getHeader(REFRESH_TOKEN);
         log.info("User token with barer..... {}", token);
