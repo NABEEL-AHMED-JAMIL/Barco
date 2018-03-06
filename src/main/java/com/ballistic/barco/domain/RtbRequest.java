@@ -1,7 +1,7 @@
-package com.ballistic.barco.domain;
+package com.admaxim.mvc.mapping;
 
-
-import com.ballistic.barco.domain.rtbrequest.*;
+import com.admaxim.mvc.mapping.request.*;
+import com.admaxim.mvc.model.User;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class RtbRequest {
     private List<String> bapp;
     private Source source;
     private Regs regs;
-    private Ext ext;
+    private Object ext;
 
 
     public String getId() { return id; }
@@ -87,8 +87,7 @@ public class RtbRequest {
     public Regs getRegs() { return regs; }
     public void setRegs(Regs regs) { this.regs = regs; }
 
-    public Ext getExt() { return ext; }
-    public void setExt(Ext ext) { this.ext = ext; }
-
+    public Object getExt() { return ext; }
+    public void setExt(Object ext) { this.ext = ext; }
 
 }
