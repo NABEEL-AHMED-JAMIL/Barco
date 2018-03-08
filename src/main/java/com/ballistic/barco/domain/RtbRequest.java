@@ -1,7 +1,7 @@
-package com.admaxim.mvc.mapping;
+package com.ballistic.barco.domain;
 
-import com.admaxim.mvc.mapping.request.*;
-import com.admaxim.mvc.model.User;
+
+import com.ballistic.barco.domain.rtbrequest.*;
 
 import java.util.List;
 
